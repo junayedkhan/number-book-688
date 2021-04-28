@@ -1,0 +1,28 @@
+    <section class="add_data">
+        <div class="data_form">
+            <div class="logo">
+                <h2>JK</h2>
+            </div>
+            <div class="title">
+                <h4>add number</h4>
+            </div>
+            {{#if messages.error}}
+            <div id="err_mass">
+                <span>{{messages.error}}</span>
+            </div>
+            {{/if}}
+            <form action="/add" method="POST">
+                <div class="input_fuild">
+                    <div class="input_item">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" placeholder="Name" name="name">
+                    </div>
+                    <div class="input_item">
+                        <i class="fas fa-phone-alt icon"></i>
+                        <input type="text" placeholder="number" name="number">
+                    </div>
+                    <button type="submit" class="btn">add</button>
+                </div>
+            </form>
+        </div>
+    </section>

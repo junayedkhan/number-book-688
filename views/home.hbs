@@ -1,0 +1,52 @@
+<section class="home">
+    {{!-- ==============================
+        nav section start
+=============================== --}}
+    <nav>
+        <h2>number book</h2>
+        <button class="tooltip">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="tooltiptext">
+            <ul>
+                <li>
+                    <a href="/add"><i class="fas fa-plus-square"></i>add</a>
+                </li>
+                <li>
+                    <a href="/logout" class="logout_btn"><i class="fas fa-sign-out-alt"></i>logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {{!-- =========================
+        nav section end
+========================== --}}
+
+    {{!-- =========================
+        box section start
+========================== --}}
+
+    {{#if post_home}}
+    {{#each post_home}}
+    <section class="box">
+        <div class="box_title">
+            <span>Name: {{name}}</span>
+            <span>Number: {{number}}</span>
+        </div>
+        <div class="box_icon">
+            <a href="/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+            <a href="/delete/{{_id}}"><i class="fas fa-trash"></i></a>
+        </div>
+    </section>
+    {{/each}}
+    {{else}}
+    <div class="no_data">
+        <h1>data not found</h1>
+    </div>
+    {{/if}}
+
+
+
+
+
+</section>

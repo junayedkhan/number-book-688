@@ -1,0 +1,449 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 20px;
+    background: #ecf0f3;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* =============================
+        common css end
+===============================*/
+
+/* =============================
+        login section start
+===============================*/
+.login_section {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+}
+
+.login_form {
+    width: 330px;
+    min-height: 450px;
+    background: #ecf0f3;
+    border-radius: 20px;
+    box-shadow: 10px 10px 15px #cbced1,
+        -10px -10px 15px #fff;
+    padding: 40px 30px 30px 30px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #444;
+    border: 2px solid #555;
+    box-shadow: 6px 6px 12px #a7aaaf,
+        -6px -6px 12px #fff;
+
+}
+
+.logo h2 {
+    text-transform: uppercase;
+    font-size: 33px
+}
+
+.title {
+    text-transform: capitalize;
+    color: #444;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+#err_mass {
+    margin-top: 20px;
+    height: 58px;
+    line-height: 58px;
+    border-radius: 30px;
+    color: rgb(158, 52, 52);
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 8px 8px 8px #cbced1,
+        -8px -8px 8px #fff;
+}
+
+.login_fuild {
+    width: 100%;
+    padding: 35px 0;
+}
+
+.input_item {
+    margin-bottom: 20px;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1,
+        inset -8px -8px 8px #fff;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.input_item .icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #666;
+}
+
+.input_item .show {
+    font-size: 18px;
+    cursor: pointer;
+    color: #666;
+}
+
+.login_fuild input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    color: #666;
+    font-size: 16px;
+}
+
+.login_fuild .forgot_pass {
+    text-transform: capitalize;
+    color: #555;
+    margin-left: 10px;
+}
+
+.btn {
+    margin-top: 2rem;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 30px;
+    background: rgb(65, 149, 160);
+    cursor: pointer;
+    box-shadow: 3px 3px 8px #cbced1,
+        -3px -3px 8px #fff;
+    transition: 0.3s linear;
+}
+
+.btn:hover {
+    background: rgb(63, 161, 173);
+}
+
+.create_acc {
+    text-align: center;
+    color: #666;
+}
+
+.create_acc a {
+    margin-top: 10px;
+    color: #666;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px 40px;
+    border-radius: 30px;
+    box-shadow: 3px 3px 8px #cbced1,
+        -3px -3px 8px #fff;
+}
+
+/* =============================
+        login section end
+===============================*/
+
+/* =============================
+      register section start
+===============================*/
+body {
+    background: #ecf0f3;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.register_section {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+}
+
+.register_form {
+
+    min-height: 450px;
+    background: #ecf0f3;
+    border-radius: 20px;
+    box-shadow: 10px 10px 15px #cbced1,
+        -10px -10px 15px #fff;
+    padding: 40px 30px 30px 30px;
+}
+
+.register_fuild {
+    width: 100%;
+    padding: 35px 0;
+    display: flex;
+}
+
+.register_fuild .fuild_item_2 {
+    margin-left: 1rem;
+}
+
+.input_item .show2 {
+    font-size: 18px;
+    cursor: pointer;
+    color: #666;
+}
+
+.register_fuild input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    color: #666;
+    font-size: 16px;
+}
+
+.register_btn {
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 30px;
+    background: rgb(65, 149, 160);
+    cursor: pointer;
+    box-shadow: 3px 3px 8px #cbced1,
+        -3px -3px 8px #fff;
+    transition: 0.3s linear;
+}
+
+.register_btn:hover {
+    background: rgb(63, 161, 173);
+}
+
+.login_acc {
+    text-align: center;
+    margin-top: 2rem;
+    color: #666;
+}
+
+.login_acc a {
+    margin-top: 10px;
+    color: #666;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px 40px;
+    border-radius: 30px;
+    box-shadow: 3px 3px 8px #cbced1,
+        -3px -3px 8px #fff;
+}
+
+@media screen and (max-width: 615px) {
+    .register_fuild {
+        flex-direction: column;
+    }
+
+    .register_fuild .fuild_item_2 {
+        margin-left: 0rem;
+    }
+}
+
+/* =============================
+      register section end
+===============================*/
+
+/* =============================
+      nav section start
+===============================*/
+.home {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 10px 10px 15px #cbced1,
+        -10px -10px 15px #fff;
+}
+
+nav {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    position: relative;
+}
+
+nav h2 {
+    text-transform: capitalize;
+    color: #444;
+    font-size: 26px;
+    text-shadow: 10px 10px 15px #cbced1,
+        -10px -10px 15px #fff;
+}
+
+nav button {
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    line-height: 53px;
+    color: #444;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-shadow: 6px 6px 15px #cbced1,
+        -6px -6px 15px #fff;
+}
+
+.tooltiptext {
+    display: none;
+    width: 200px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    right: 0px;
+    top: 100px;
+    background: #ecf0f3;
+    box-shadow: 6px 6px 15px #cbced1,
+        -6px -6px 15px #fff;
+    z-index: 1000;
+}
+
+.tooltiptext_show {
+    display: block;
+}
+
+.tooltiptext ul li {
+    margin: 10px 0;
+}
+
+.tooltiptext ul li a {
+
+    color: #444;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.tooltiptext ul li i {
+    margin-right: 10px;
+}
+
+/* =============================
+      nav section end
+===============================*/
+
+/* =============================
+      box section start
+===============================*/
+
+.box {
+    margin-top: 20px;
+    padding: 0 10px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ecf0f3;
+    box-shadow: inset 6px 6px 15px #cbced1,
+        inset -6px -6px 15px #fff;
+}
+
+.box_title{
+    display: flex;
+    flex-direction: column;
+}
+
+.box_title span{
+    color: #444;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.box .box_title p {
+    color: #444;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.box .box_icon a {
+    margin-left: 20px;
+    font-size: 20px;
+    color: #444;
+}
+
+.add_data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data_form {
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    background: #ecf0f3;
+    box-shadow: 6px 6px 15px #cbced1,
+        -6px -6px 15px #fff;
+}
+
+.input_fuild {
+    margin-top: 20px;
+}
+
+.input_fuild input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    color: #666;
+    font-size: 16px;
+}
