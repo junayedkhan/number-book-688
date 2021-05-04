@@ -99,14 +99,14 @@ router.post('/register', async (req, res) => {
             email,
             password
         }, private_key, {
-            expiresIn: "1m"
+            expiresIn: "10m"
         })
         var client_url = 'http://' + req.headers.host
 
         const output = `
         <h2>Please click on below link to activate your account</h2>
         <p>${client_url}/activate/${token}</p>
-        <p><b>NOTE: </b> The above activation link expires in 1 minutes.</p>
+        <p><b>NOTE: </b> The above activation link expires in 10 minutes.</p>
         `;
 
         var mailOptions = {
