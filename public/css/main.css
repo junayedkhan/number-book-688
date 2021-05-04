@@ -266,8 +266,8 @@ body {
 
 @media screen and (max-width: 615px) {
     .register_form {
-        margin-top: 120px;
-        margin-bottom: 20px;
+        /* margin-top: 120px;
+        margin-bottom: 20px; */
     }
     .register_fuild {
         flex-direction: column;
