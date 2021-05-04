@@ -6,7 +6,7 @@ const session = require("express-session")
 var jwt = require('jsonwebtoken');
 require('dotenv').config()
 const app = express()
-const PORT = process.env.port || 3000
+const PORT = process.env.PORT || 8080
 
 
 // mongoDB_connection //
