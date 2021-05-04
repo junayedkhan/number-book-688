@@ -96,8 +96,7 @@ router.post('/register', async (req, res) => {
 
         var token = jwt.sign({
             name,
-            email,
-            password
+            email
         }, private_key, {
             expiresIn: "10m"
         })
@@ -152,8 +151,7 @@ router.get('/activate/:token', async (req, res) => {
         } else {
             const {
                 name,
-                email,
-                password
+                email
             } = decoded
 
             const hash_password = await bcryptjs.hash(password, 10)
@@ -221,34 +219,40 @@ router.get('/add', (req, res) => {
 })
 
 router.get('/edit/:id', async (req, res) => {
-    const edit_post = await data.findOne({_id: req.params.id}).lean()
+    const edit_post = await data.findOne({
+        _id: req.params.id
+    }).lean()
     res.render('edit', {
         edit_post
     })
 })
 
-router.post('/update', async(req, res) => {
-    const {name, number, id} = req.body
+router.post('/update', async (req, res) => {
+    const {
+        name,
+        number,
+        id
+    } = req.body
     const update_data = await data.findById(id)
-    if(update_data){
+    if (update_data) {
         update_data.name = name
         update_data.number = number
         const save_data = await update_data.save()
-        if(save_data){
+        if (save_data) {
             res.redirect('/')
-        }
-        else{
+        } else {
             res.redirect('/edit')
         }
     }
 })
 
-router.get('/delete/:id', async(req, res) => {
-    const deleted = await data.deleteOne({_id: req.params.id})
-    if(deleted){
+router.get('/delete/:id', async (req, res) => {
+    const deleted = await data.deleteOne({
+        _id: req.params.id
+    })
+    if (deleted) {
         res.redirect('/')
-    }
-    else{
+    } else {
         res.redirect('/')
     }
 })
