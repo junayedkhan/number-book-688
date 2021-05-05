@@ -71,8 +71,10 @@ router.post('/register', async (req, res) => {
         req.flash("error", "plasse enter your email")
         return res.redirect("/register")
     }
-    const user = await register_model.findOne({email})
-    if(user){
+    const user = await register_model.findOne({
+        email
+    })
+    if (user) {
         req.flash("error", "email Already Exist !")
         return res.redirect("/register")
     }
@@ -216,21 +218,27 @@ router.get('/forgot', (req, res) => {
     res.render('forgot')
 })
 
-router.post('/forgot', async(req, res) => {
-    const {email} = req.body
+router.post('/forgot', async (req, res) => {
+    const {
+        email
+    } = req.body
     if (email == "") {
         req.flash("error", "plasse enter your email")
         return res.redirect("/forgot")
-    }
-    else{
-        const user = await register_model.findOne({email})
+    } else {
+        const user = await register_model.findOne({
+            email
+        })
         if (!user) {
             req.flash("error", "user not found !")
             res.redirect('/forgot')
-        }
-        else{
-            const token = jwt.sign({_id: user._id}, private_key, {expiresIn: "10m"})
-            const client_url ='http://' + req.headers.host
+        } else {
+            const token = jwt.sign({
+                _id: user._id
+            }, private_key, {
+                expiresIn: "10m"
+            })
+            const client_url = 'http://' + req.headers.host
             const output = `
             <h2>Please click on below link to reset your account password</h2>
             <p>${client_url}/forgot/${token}</p>
@@ -243,12 +251,11 @@ router.post('/forgot', async(req, res) => {
                 html: output
             };
             transporter.sendMail(mailOptions, (err, info) => {
-                if(err){
+                if (err) {
                     console.log(error);
                     req.flash("error", "Something went wrong, Please try again.")
                     return res.redirect("/forgot")
-                }
-                else{
+                } else {
                     console.log('Email sent: ' + info.response);
                     req.flash("error", "Activation link sent your email, plasse chack in.")
                     return res.redirect("/forgot")
@@ -259,25 +266,27 @@ router.post('/forgot', async(req, res) => {
 })
 
 router.get('/forgot/:token', (req, res) => {
-    const {token} = req.params
-    jwt.verify(token, private_key, async(err, decoded) => {
-        if(err){
+    const {
+        token
+    } = req.params
+    jwt.verify(token, private_key, async (err, decoded) => {
+        if (err) {
             req.flash(
                 'error', 'Incorrect or expired link! Please try again.'
             );
-            res.redirect('/forgot'); 
-        }
-        else {
-            const {_id} = decoded
+            res.redirect('/forgot');
+        } else {
+            const {
+                _id
+            } = decoded
             const user = await register_model.findById(_id)
-            if(!user){
-                    req.flash(
-                        'error',
-                        'User with email ID does not exist! Please try again.'
-                    );
-                    res.redirect('/login');
-            }
-            else{
+            if (!user) {
+                req.flash(
+                    'error',
+                    'User with email ID does not exist! Please try again.'
+                );
+                res.redirect('/login');
+            } else {
                 res.redirect(`/reset/${_id}`)
             }
         }
@@ -285,11 +294,16 @@ router.get('/forgot/:token', (req, res) => {
 })
 
 router.get('/reset/:id', (req, res) => {
-    res.render('reset', { _id:req.params.id })
+    res.render('reset', {
+        _id: req.params.id
+    })
 })
 
-router.post('/reset/:id', async(req, res) => {
-    const {password, confirm_password} = req.body
+router.post('/reset/:id', async (req, res) => {
+    const {
+        password,
+        confirm_password
+    } = req.body
     const id = req.params.id
     if (password == "") {
         req.flash("error", "plasse enter your password")
@@ -306,31 +320,26 @@ router.post('/reset/:id', async(req, res) => {
     if (password !== confirm_password) {
         req.flash("error", "password not macth !")
         return res.redirect(`/reset/${id}`)
-    }
-    else {
-
+    } else {
         const hsdh_password = await bcryptjs.hash(password, 10)
-
-                register_model.findByIdAndUpdate(
-                    { _id: id },
-                    { password: hsdh_password },
-                    function (err, result) {
-                        if (err) {
-                            req.flash(
-                                'error',
-                                'Error resetting password!'
-                            );
-                            res.redirect(`/reset/${id}`);
-                        } else {
-                            req.flash(
-                                'error',
-                                'Password reset successfully!'
-                            );
-                            res.redirect('/login');
-                        }
-                    }
+        const update_pass = await register_model.findByIdAndUpdate({_id: id})
+        if (update_pass) {
+            update_pass.password = hsdh_password
+            const pass_save = await update_pass.save()
+            if (pass_save) {
+                req.flash(
+                    'error',
+                    'Password reset successfully!'
                 );
-
+                res.redirect('/login');
+            } else {
+                req.flash(
+                    'error',
+                    'Error resetting password!'
+                );
+                res.redirect(`/reset/${id}`);
+            }
+        }
     }
 })
 
