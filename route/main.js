@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer")
 const bcryptjs = require('bcryptjs');
 const router = express.Router()
 const private_key = "mailsender713"
-const user_key = "appsite.com"
 
 // model
 const register_model = require("../models/register")
@@ -49,7 +48,7 @@ router.get('/login', allready_authenticated, (req, res) => {
 })
 
 // register route handle
-router.get('/register', (req, res) => {
+router.get('/register', allready_authenticated, (req, res) => {
     res.render('register')
 })
 
@@ -72,11 +71,11 @@ router.post('/register', async (req, res) => {
         req.flash("error", "plasse enter your email")
         return res.redirect("/register")
     }
-    // const user = await register_model.findOne({email})
-    // if(user){
-    //     req.flash("error", "email Already Exist !")
-    //     return res.redirect("/register")
-    // }
+    const user = await register_model.findOne({email})
+    if(user){
+        req.flash("error", "email Already Exist !")
+        return res.redirect("/register")
+    }
     if (password == "") {
         req.flash("error", "plasse enter your password")
         return res.redirect("/register")
@@ -96,7 +95,8 @@ router.post('/register', async (req, res) => {
 
         var token = jwt.sign({
             name,
-            email
+            email,
+            password
         }, private_key, {
             expiresIn: "10m"
         })
@@ -151,7 +151,8 @@ router.get('/activate/:token', async (req, res) => {
         } else {
             const {
                 name,
-                email
+                email,
+                password
             } = decoded
 
             const hash_password = await bcryptjs.hash(password, 10)
@@ -209,6 +210,128 @@ router.post('/login', allready_authenticated, async (req, res) => {
 router.get('/logout', (req, res) => {
     req.session.destroy()
     return res.redirect('/login')
+})
+
+router.get('/forgot', (req, res) => {
+    res.render('forgot')
+})
+
+router.post('/forgot', async(req, res) => {
+    const {email} = req.body
+    if (email == "") {
+        req.flash("error", "plasse enter your email")
+        return res.redirect("/forgot")
+    }
+    else{
+        const user = await register_model.findOne({email})
+        if (!user) {
+            req.flash("error", "user not found !")
+            res.redirect('/forgot')
+        }
+        else{
+            const token = jwt.sign({_id: user._id}, private_key, {expiresIn: "10m"})
+            const client_url ='http://' + req.headers.host
+            const output = `
+            <h2>Please click on below link to reset your account password</h2>
+            <p>${client_url}/forgot/${token}</p>
+            <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>`;
+            var mailOptions = {
+                from: 'mailsender713@gmail.com',
+                to: email,
+                subject: 'Sending Email using Node.js',
+                generateTextFromHTML: true,
+                html: output
+            };
+            transporter.sendMail(mailOptions, (err, info) => {
+                if(err){
+                    console.log(error);
+                    req.flash("error", "Something went wrong, Please try again.")
+                    return res.redirect("/forgot")
+                }
+                else{
+                    console.log('Email sent: ' + info.response);
+                    req.flash("error", "Activation link sent your email, plasse chack in.")
+                    return res.redirect("/forgot")
+                }
+            })
+        }
+    }
+})
+
+router.get('/forgot/:token', (req, res) => {
+    const {token} = req.params
+    jwt.verify(token, private_key, async(err, decoded) => {
+        if(err){
+            req.flash(
+                'error', 'Incorrect or expired link! Please try again.'
+            );
+            res.redirect('/forgot'); 
+        }
+        else {
+            const {_id} = decoded
+            const user = await register_model.findById(_id)
+            if(!user){
+                    req.flash(
+                        'error',
+                        'User with email ID does not exist! Please try again.'
+                    );
+                    res.redirect('/login');
+            }
+            else{
+                res.redirect(`/reset/${_id}`)
+            }
+        }
+    })
+})
+
+router.get('/reset/:id', (req, res) => {
+    res.render('reset', { _id:req.params.id })
+})
+
+router.post('/reset/:id', async(req, res) => {
+    const {password, confirm_password} = req.body
+    const id = req.params.id
+    if (password == "") {
+        req.flash("error", "plasse enter your password")
+        return res.redirect(`/reset/${id}`)
+    }
+    if (confirm_password == "") {
+        req.flash("error", "plasse enter your confirm password")
+        return res.redirect(`/reset/${id}`)
+    }
+    if (password.length > 4) {
+        req.flash("error", "password must be 4 character")
+        return res.redirect(`/reset/${id}`)
+    }
+    if (password !== confirm_password) {
+        req.flash("error", "password not macth !")
+        return res.redirect(`/reset/${id}`)
+    }
+    else {
+
+        const hsdh_password = await bcryptjs.hash(password, 10)
+
+                register_model.findByIdAndUpdate(
+                    { _id: id },
+                    { password: hsdh_password },
+                    function (err, result) {
+                        if (err) {
+                            req.flash(
+                                'error',
+                                'Error resetting password!'
+                            );
+                            res.redirect(`/reset/${id}`);
+                        } else {
+                            req.flash(
+                                'error',
+                                'Password reset successfully!'
+                            );
+                            res.redirect('/login');
+                        }
+                    }
+                );
+
+    }
 })
 
 

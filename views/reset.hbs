@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset password</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <div class="from">
+        <div class="logo">
+            <h2>JK</h2>
+        </div>
+        <div class="title">
+            <h4>Reset Password</h4>
+        </div>
+        {{#if messages.error}}
+        <div id="err_mass">
+            <span>{{messages.error}}</span>
+        </div>
+        {{/if}}
+        <form action="/reset/{{_id}}" method="POST">
+            <div class="form_fuild">
+                <div class="input_item">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" placeholder="Password" id="password" name="password">
+                    <i class="fas fa-eye show"></i>
+                </div>
+                <div class="input_item">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" placeholder="Confirm Password" id="password2" name="confirm_password">
+                    <i class="fas fa-eye show2"></i>
+                </div>
+                <button type="submit" class="submit_btn">Log In</button>
+            </div>
+        </form>
+        <div class="btn">
+            <p>Remember your password?</p>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

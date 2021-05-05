@@ -1,0 +1,26 @@
+    <div class="from">
+        <div class="logo">
+            <h2>JK</h2>
+        </div>
+        <div class="title">
+            <h4>Forgot Password</h4>
+        </div>
+        {{#if messages.error}}
+        <div id="err_mass">
+            <span>{{messages.error}}</span>
+        </div>
+        {{/if}}
+        <form action="/forgot" method="POST">
+            <div class="form_fuild">
+                <div class="input_item">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" placeholder="Email" name="email">
+                </div>
+                <button type="submit" class="submit_btn">Log In</button>
+            </div>
+        </form>
+        <div class="btn">
+            <p>Remember your password?</p>
+            <a href="/login">Login</a>
+        </div>
+    </div>
