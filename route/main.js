@@ -33,15 +33,6 @@ const allready_authenticated = (req, res, next) => {
     next()
 }
 
-
-// home route handle
-router.get('/', is_authenticated, async (req, res) => {
-    const post_home = await data.find({}).lean()
-    res.render('home', {
-        post_home
-    })
-})
-
 // login route handle
 router.get('/login', allready_authenticated, (req, res) => {
     res.render('login')
@@ -218,7 +209,7 @@ router.get('/forgot', (req, res) => {
     res.render('forgot')
 })
 
-router.post('/forgot', async (req, res) => {
+router.post('/forgot',is_authenticated, async (req, res) => {
     const {
         email
     } = req.body
@@ -293,7 +284,7 @@ router.get('/forgot/:token', (req, res) => {
     })
 })
 
-router.get('/reset/:id', (req, res) => {
+router.get('/reset/:id',is_authenticated, (req, res) => {
     res.render('reset', {
         _id: req.params.id
     })
@@ -345,12 +336,19 @@ router.post('/reset/:id', async (req, res) => {
 
 
 // ================== crud operation ======================== //
+// home route handle
+router.get('/', is_authenticated, async (req, res) => {
+    const post_home = await data.find({}).lean()
+    res.render('home', {
+        post_home
+    })
+})
 
-router.get('/add', (req, res) => {
+router.get('/add',is_authenticated, (req, res) => {
     res.render('add')
 })
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id',is_authenticated, async (req, res) => {
     const edit_post = await data.findOne({
         _id: req.params.id
     }).lean()
@@ -378,7 +376,7 @@ router.post('/update', async (req, res) => {
     }
 })
 
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id',is_authenticated, async (req, res) => {
     const deleted = await data.deleteOne({
         _id: req.params.id
     })

@@ -33,10 +33,3 @@ $(document).ready(()=>{
         }
     });
 })
-
-
-$(document).ready(function () {
-    $('.tooltip').click(function () { 
-        $('.tooltiptext').toggleClass('tooltiptext_show')
-    });
-});
