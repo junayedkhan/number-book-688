@@ -372,6 +372,38 @@ header nav .nav_title .nav_icon h2{
         -2px -2px 2px #fff;
 }
 
+#mobile_btn {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    padding: 0 20px;
+    color: #444;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    box-shadow: 2px 2px 4px #b8b9be,
+        -2px -2px 4px #fff;
+    transition: .5s ease-in-out;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    -ms-transition: .5s ease-in-out;
+    z-index: 9999;
+}
+
+#mobile_btn i{
+    transition: .5s ease-in-out;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    -ms-transition: .5s ease-in-out;
+}
+
+.rotate_icon {
+    transform: rotate(180deg);
+}
+
 header nav .user_ditails{
     margin: 30px 0;
     display: flex;
@@ -421,13 +453,14 @@ header nav .nav_bar .nav_item i{
 
 header .logout{
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 header .logout .logout_btn{
     color: #444;
     font-weight: 700;
     font-size: 20px;
+    text-align: end;
 }
 
 header .logout .logout_btn:hover{
@@ -439,6 +472,7 @@ header .logout .logout_btn:hover{
 header .logout .logout_btn i{
     margin-right: 5px;
 }
+
 /* ==============================
         sidebar section end
 ===============================*/

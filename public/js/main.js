@@ -33,3 +33,10 @@ $(document).ready(()=>{
         }
     });
 })
+
+$(document).ready(function () {
+    $("#mobile_btn").click(function () { 
+        $("header").toggleClass("menu");
+        $("#mobile_btn i").toggleClass("rotate_icon");
+    });
+});
