@@ -382,7 +382,7 @@ header nav .nav_title .nav_icon h2{
     font-size: 30px;
     border-radius: 5px;
     border: 1px solid #444;
-    box-shadow: 2px 2px 4px #b8b9be,
+    box-shadow: 2px 2px 4px #cbced1,
         -2px -2px 4px #fff;
     transition: .5s ease-in-out;
     -webkit-transition: .5s ease-in-out;
