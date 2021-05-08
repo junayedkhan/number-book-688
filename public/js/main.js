@@ -40,3 +40,9 @@ $(document).ready(function () {
         $("#mobile_btn i").toggleClass("rotate_icon");
     });
 });
+
+// $(document).ready(function(){
+//     $("#dropdown_icon").click(function(){
+//       $("#panel").slideToggle("slow");
+//     });
+// });

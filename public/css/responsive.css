@@ -16,6 +16,10 @@
     #mobile_btn{
         display: block;
     }
+
+    main{
+        margin-left: 0px;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -35,6 +39,10 @@
 
     #mobile_btn{
         display: block;
+    }
+
+    main{
+        margin-left: 0px;
     }
 
 }
@@ -58,6 +66,9 @@
         display: block;
     }
 
+    main{
+        margin-left: 0px;
+    }
 
 }
 
@@ -74,6 +85,10 @@
 
     #mobile_btn{
         display: none;
+    }
+
+    main{
+        margin-left: 300px;
     }
 }
 

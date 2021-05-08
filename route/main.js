@@ -363,15 +363,38 @@ router.post('/update', async (req, res) => {
         number,
         id
     } = req.body
-    const update_data = await data.findById(id)
-    if (update_data) {
-        update_data.name = name
-        update_data.number = number
-        const save_data = await update_data.save()
-        if (save_data) {
-            res.redirect('/')
-        } else {
-            res.redirect('/edit')
+    if(name == ""){
+        req.flash(
+            'error',
+            'Enter your name'
+        );
+        return res.redirect(`/edit/${id}`)
+    }
+    else if(number == ""){
+        req.flash(
+            'error',
+            'Enter your number'
+        );
+        return res.redirect(`/edit/${id}`)
+    }
+    else if(number.length != 11){
+        req.flash(
+            'error',
+            'Enter your valid number'
+        );
+        return res.redirect(`/edit/${id}`)
+    }
+    else {
+        const update_data = await data.findById(id)
+        if (update_data) {
+            update_data.name = name
+            update_data.number = number
+            const save_data = await update_data.save()
+            if (save_data) {
+                res.redirect('/')
+            } else {
+                res.redirect('/edit')
+            }
         }
     }
 })
@@ -387,19 +410,43 @@ router.get('/delete/:id',is_authenticated, async (req, res) => {
     }
 })
 
-router.post('/add', async (req, res) => {
+router.post('/add', async(req, res) => {
     const {
         name,
         number
     } = req.body
-    const add_data = await data({
-        name,
-        number
-    }).save()
-    if (add_data) {
-        res.redirect('/')
-    } else {
-        res.redirect('/add')
+
+    if(name == ""){
+        req.flash(
+            'error',
+            'Enter your name'
+        );
+        return res.redirect('/add')
+    }
+    else if(number == ""){
+        req.flash(
+            'error',
+            'Enter your number'
+        );
+        return res.redirect('/add')
+    }
+    else if(number.length != 11){
+        req.flash(
+            'error',
+            'Enter your valid number'
+        );
+        return res.redirect('/add')
+    }
+    else {
+        const add_data = await data({
+            name,
+            number
+        }).save()
+        if (add_data) {
+            res.redirect('/')
+        } else {
+            res.redirect('/add')
+        }
     }
 })
 
