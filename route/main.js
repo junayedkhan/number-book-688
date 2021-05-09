@@ -7,7 +7,8 @@ const private_key = "mailsender713"
 
 // model
 const register_model = require("../models/register")
-const data = require('./../models/data')
+const data = require('./../models/data');
+const flash = require("express-flash");
 
 // nodemailer
 var transporter = nodemailer.createTransport({
@@ -119,7 +120,7 @@ router.post('/register', async (req, res) => {
             } else {
 
                 console.log('Email sent: ' + info.response);
-                req.flash("error", "Activation link sent to email ID. Please activate to log in.")
+                req.flash("success", "Activation link sent to email ID. Please activate to log in.")
                 return res.redirect("/register")
 
             }
@@ -158,7 +159,7 @@ router.get('/activate/:token', async (req, res) => {
 
             if (new_user) {
                 console.log(new_user);
-                req.flash("error", "your now registered plasse login")
+                req.flash("success", "you now registered plasse login")
                 res.redirect('/login')
             } else {
                 req.flash("error", "Account activation error!")
@@ -248,7 +249,7 @@ router.post('/forgot',is_authenticated, async (req, res) => {
                     return res.redirect("/forgot")
                 } else {
                     console.log('Email sent: ' + info.response);
-                    req.flash("error", "Activation link sent your email, plasse chack in.")
+                    req.flash("success", "Activation link sent your email, plasse chack in.")
                     return res.redirect("/forgot")
                 }
             })
@@ -319,7 +320,7 @@ router.post('/reset/:id', async (req, res) => {
             const pass_save = await update_pass.save()
             if (pass_save) {
                 req.flash(
-                    'error',
+                    'success',
                     'Password reset successfully!'
                 );
                 res.redirect('/login');
@@ -440,7 +441,7 @@ router.post('/add', async(req, res) => {
     else {
         const add_data = await data({
             name,
-            number
+            number,
         }).save()
         if (add_data) {
             res.redirect('/')

@@ -129,6 +129,20 @@ body {
         -8px -8px 8px #fff;
 }
 
+#success_mass{
+    margin-top: 20px;
+    height: 58px;
+    line-height: 58px;
+    border-radius: 30px;
+    color: rgb(18, 160, 42);
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 8px 8px 8px #cbced1,
+        -8px -8px 8px #fff;
+}
+
 .form_fuild {
     width: 100%;
     padding: 35px 0;

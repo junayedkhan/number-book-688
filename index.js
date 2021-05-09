@@ -16,7 +16,7 @@ mongoDB_connection()
 // connect mongoDB session
 const MongoDBSession = require('connect-mongodb-session')(session)
 const store = new MongoDBSession({
-    uri: 'mongodb+srv://junayedkhan:khan_0258@cluster0.sir31.mongodb.net/junayedkhan?retryWrites=true&w=majority',
+    uri: 'mongodb+srv://junayedkhan:khan_0258@cluster0.4dhi8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     collection: 'my_sessions'
 })
 
